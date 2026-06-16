@@ -72,6 +72,12 @@ export default function Home() {
                 >
                   Download CV
                 </a>
+                <Link
+                  href="/contact"
+                  className="rounded border border-black/20 px-5 py-2.5 text-sm font-medium transition hover:bg-black/5 dark:border-white/20 dark:hover:bg-white/5"
+                >
+                  Contact Me
+                </Link>
               </div>
 
               <div className="mt-6 flex items-center justify-center gap-4 sm:justify-start">
