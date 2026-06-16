@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Project } from "@/lib/types";
 
+const BLUR_DATA_URL =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==";
+
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
@@ -13,6 +16,10 @@ export default function ProjectCard({ project }: { project: Project }) {
           src={project.coverImage}
           alt={project.title}
           fill
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
           className="object-cover transition group-hover:scale-105"
         />
         {project.isPrivate && (
@@ -23,7 +30,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       </div>
       <div className="p-4">
         <h3 className="font-semibold">{project.title}</h3>
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+        <p className="mt-1 line-clamp-2 text-sm text-gray-600 dark:text-gray-400">
           {project.description}
         </p>
         <div className="mt-3 flex flex-wrap gap-2">

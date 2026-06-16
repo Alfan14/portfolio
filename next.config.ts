@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 64, 96, 128, 256, 400],
+    remotePatterns: [
+      { protocol: "https", hostname: "img.youtube.com" },
+      { protocol: "https", hostname: "i.ytimg.com" },
+      { protocol: "https", hostname: "i.vimeocdn.com" },
+    ],
+  },
 };
 
 export default nextConfig;

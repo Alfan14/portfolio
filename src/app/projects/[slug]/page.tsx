@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { getProjectBySlug, projects } from "@/content/projects";
+import { getVideoEmbed } from "@/lib/video";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -17,10 +18,12 @@ export default async function ProjectDetailPage({
 
   if (!project) notFound();
 
+  const video = project.demoVideo ? getVideoEmbed(project.demoVideo) : null;
+
   return (
     <>
       <Navbar />
-      <main className="mx-auto flex-1 max-w-4xl px-6 py-16">
+      <main className="mx-auto max-w-4xl flex-1 px-6 py-16">
         <div className="flex items-center gap-3">
           <h1 className="text-3xl font-bold">{project.title}</h1>
           {project.isPrivate && (
@@ -30,9 +33,7 @@ export default async function ProjectDetailPage({
           )}
         </div>
 
-        <p className="mt-4 text-gray-600 dark:text-gray-400">
-          {project.description}
-        </p>
+        <p className="mt-4 text-gray-600 dark:text-gray-400">{project.description}</p>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {project.techStack.map((tech) => (
@@ -45,7 +46,6 @@ export default async function ProjectDetailPage({
           ))}
         </div>
 
-        {/* Links: hanya tampilkan repo jika TIDAK private */}
         <div className="mt-6 flex gap-4">
           {!project.isPrivate && project.repoUrl && (
             <a
@@ -70,14 +70,25 @@ export default async function ProjectDetailPage({
         </div>
 
         {/* Demo video */}
-        {project.demoVideo && (
+        {video && (
           <div className="mt-10">
             <h2 className="text-xl font-semibold">Demo</h2>
-            <video
-              controls
-              className="mt-3 w-full rounded-lg border border-black/10 dark:border-white/10"
-              src={project.demoVideo}
-            />
+            {video.type === "local" ? (
+              <video
+                controls
+                preload="metadata"
+                poster={project.coverImage}
+                className="mt-3 w-full rounded-lg"
+                src={video.embedUrl}
+              />
+            ) : (
+              <iframe
+                src={video.embedUrl}
+                className="mt-3 aspect-video w-full rounded-lg"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            )}
           </div>
         )}
 
