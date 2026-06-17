@@ -5,8 +5,8 @@ export type Project = {
   techStack: string[];
   coverImage: string;
   images?: string[];
-  demoVideo?: string; // path lokal atau URL embed (YouTube/Vimeo)
-  isPrivate: boolean; // true = jangan tampilkan link repo
+  demoVideo?: string; 
+  isPrivate: boolean; 
   repoUrl?: string | null;
   liveUrl?: string | null;
   featured?: boolean;
