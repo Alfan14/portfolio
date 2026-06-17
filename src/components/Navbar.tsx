@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const links = [
   { href: "/", label: "Home" },
@@ -14,7 +15,7 @@ export default function Navbar() {
         <Link href="/" className="font-semibold text-lg">
           Muhammad Alfan
         </Link>
-        <ul className="flex gap-6 text-sm">
+        <ul className="flex items-center gap-6 text-sm">
           {links.map((link) => (
             <li key={link.href}>
               <Link href={link.href} className="hover:underline">
@@ -22,6 +23,9 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+          <li>
+            <ThemeToggle />
+          </li>
         </ul>
       </nav>
     </header>

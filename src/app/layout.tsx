@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -40,8 +42,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col font-sans">
+        <ThemeProvider>
+          {children}
+          <WhatsAppButton />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
