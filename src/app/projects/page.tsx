@@ -1,6 +1,20 @@
+import type { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
 import Navbar from "@/components/Navbar";
 import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/content/projects";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Daftar project portfolio Muhammad Alfan — dari sistem informasi publik, project management, hingga platform asesmen perkembangan anak.",
+  openGraph: {
+    title: "Projects",
+    description:
+      "Daftar project portfolio Muhammad Alfan — dari sistem informasi publik, project management, hingga platform asesmen perkembangan anak.",
+    url: siteConfig.url + "/projects",
+  },
+};
 
 export default function ProjectsPage() {
   return (

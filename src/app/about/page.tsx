@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
 import Navbar from "@/components/Navbar";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Kenali Muhammad Alfan — Full Stack Developer dengan pengalaman membangun aplikasi web menggunakan Next.js, Express.js, dan PostgreSQL.",
+  openGraph: {
+    title: "About",
+    description:
+      "Kenali Muhammad Alfan — Full Stack Developer dengan pengalaman membangun aplikasi web menggunakan Next.js, Express.js, dan PostgreSQL.",
+    url: siteConfig.url + "/about",
+  },
+};
 
 const skills = [
   {
