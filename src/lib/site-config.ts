@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Muhammad Alfan",
   role: "Full Stack Developer",
-  url: "https://portfolio-muhammadalfan.vercel.app",
+  url: "https://portfolio-five-pink-vdobgtc9k7.vercel.app",
   description:
     "Full Stack Developer spesialisasi Next.js, Express.js, dan PostgreSQL. Membangun aplikasi web yang informatif, fungsional, dan mudah dipelihara.",
   keywords: [
